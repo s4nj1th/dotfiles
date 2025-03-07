@@ -1,0 +1,35 @@
+#!/bin/sh
+
+#short form
+alias \
+  scsn="screenshoot-now" \
+  scsd="screenshoot-delayed" \
+  mkd="mkdir -pv" \
+  nv="nvim" \
+  music="ncmpcpp" \
+  kX="pkill Xorg" \
+  kG="pkill gnome-session" \
+  mpvnov="mpv --no-video" \
+  vol="pulsemixer" \
+  susp="systemctl suspend" \
+  pyServer="python -m http.server" \
+  code="codium" \
+  Q="cat /dev/null > ~/.zsh_history && exit" \
+  mpvlofi="mpv --no-video --cache=no --volume=40 'https://www.youtube.com/watch?v=jfKfPfyJRdk'" \
+  mpvlofiv="mpv --cache=no --volume=40 'https://www.youtube.com/watch?v=jfKfPfyJRdk'" \
+  clearbg="feh --bg-fill ~/pix/000.png" \
+  tlauncher="java -jar /usr/share/tlauncher/tlauncher.jar" \
+  zat="zathura" \
+  ncmpcpp="ncmpcpp -q" \
+  compMini="xcompmgr -c -f -F -r 0 -o 0 -I 0.1 -O 0.1 -D 15 & disown" \
+  ls="ls --color=auto --group-directories-first" \
+  grep="grep -i --color=auto" \
+  diff="diff --color=auto" \
+  rm="trash" \
+  rmd="trash -rv" \
+  sxiv="sxiv -a" \
+  logoff="loginctl kill-session self" \
+  lf="y" \
+  tmux="tmux -2" \
+  df="df -x tmpfs" \
+  watch="watch --color"

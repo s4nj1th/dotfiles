@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# echo ""
+# neofetch
+# # echo ""
+
+# cd ~
+
+if (( RANDOM % 3 == 0 )); then
+    fortune | cowsay
+fi
