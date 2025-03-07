@@ -10,7 +10,6 @@ PROMPT="%B%{$fg[red]%}[%{$fg[green]%}%n%{$fg[yellow]%}@%{$fg[blue]%}%M %{$fg[mag
 # PROMPT='%~ %#: '
 # PROMPT='%n@%m %1~ %# '
 
-export HOME="/home/s4nj1th"
 export PATH="${PATH}:${HOME}/.local/bin"
 export EDITOR="nvim"
 export TERMINAL="foot"
