@@ -1,0 +1,40 @@
+[[mgr.prepend_keymap]]
+on   = [ "g", "p" ]
+run  = 'cd ~/pix/'
+desc = "Cd to ~/pix"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "v" ]
+run  = 'cd ~/vids/'
+desc = "Cd to ~/vids"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "d" ]
+run  = 'cd ~/docs/'
+desc = "Cd to ~/docs"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "D" ]
+run  = 'cd ~/downs/'
+desc = "Cd to ~/downs"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "m" ]
+run  = 'cd ~/music/'
+desc = "Cd to ~/music"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "l" ]
+run  = 'cd ~/.local/'
+desc = "Cd to ~/.local"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "s" ]
+run  = 'cd ~/docs/sync/'
+desc = "Cd to ~/docs/sync"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "C" ]
+run  = 'cd ~/.cache/'
+desc = "Cd to ~/.cache"
+

@@ -1,0 +1,27 @@
+[flavor]
+dark = "ayu-dark"
+
+[status]
+permissions_t = { fg = "blue" }
+permissions_r = { fg = "blue" }
+permissions_w = { fg = "blue" }
+permissions_x = { fg = "blue" }
+permissions_s = { fg = "blue" }
+mode_normal = { bg = "black", fg = "blue" }
+mode_select = { bg = "blue" }
+mode_unset = { fg = "blue" }
+#
+[mgr]
+  border_symbol = " "
+# count_selected = { fg = "black", bg = "blue" }
+# count_copied = { fg = "black", bg = "green" }
+# count_cut = { fg = "black", bg = "red" }
+#
+[filetype]
+
+rules = [
+
+  { name = "*",   fg = "gray" },
+  { name = "*/",  fg = "blue" }
+
+]
