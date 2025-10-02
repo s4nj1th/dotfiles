@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#short form
 alias \
   scsn="screenshoot-now" \
   scsd="screenshoot-delayed" \
@@ -32,4 +31,5 @@ alias \
   lf="y" \
   tmux="tmux -2" \
   df="df -x tmpfs" \
-  watch="watch --color"
+  watch="watch --color" \
+	python="python3"
