@@ -8,31 +8,31 @@ dynamic_title = true
 # decorations = "Buttonless"
 
 [colors.primary]
-background = "#0F1419"
-foreground = "#E6E1CF"
+background = "#0f1419"
+foreground = "#f7f8f9"
 
 [colors.normal]
-black   = "#0F1419"
-red     = "#F07178"
-green   = "#B8CC52"
-yellow  = "#FFB454"
-blue    = "#59C2FF"
-magenta = "#D2A6FF"
-cyan    = "#95E6CB"
-white   = "#E6E1CF"
+black   = "#000000"
+red     = "#ff3333"
+green   = "#b8cc53"
+yellow  = "#e6c547"
+blue    = "#36a3d9"
+magenta = "#f07178"
+cyan    = "#95e6cb"
+white   = "#ffffff"
 
 [colors.bright]
-black   = "#4E5057"
-red     = "#F07178"
-green   = "#B8CC52"
-yellow  = "#FFB454"
-blue    = "#59C2FF"
-magenta = "#D2A6FF"
-cyan    = "#95E6CB"
-white   = "#E6E1CF"
+black   = "#323232"
+red     = "#ff6565"
+green   = "#eafe84"
+yellow  = "#fff779"
+blue    = "#68d5ff"
+magenta = "#ffa3a9"
+cyan    = "#c7fffd"
+white   = "#ffffff"
 
 [font]
-normal = { family = "SF Mono" }
+normal = { family = "Liga SFMono Nerd Font" }
 size = 13
 
 [terminal.shell]
