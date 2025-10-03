@@ -1,5 +1,7 @@
 autoload -U colors && colors
 
+export PATH=$PATH:$HOME/.local/bin
+
 PROMPT="%B%{$fg[red]%}[%{$fg[green]%}%n%{$fg[yellow]%}@%{$fg[blue]%}%m %{$fg[magenta]%}%1~%{$fg[red]%}]%{$reset_color%}%#%b "
 
 export EDITOR=nvim
@@ -60,6 +62,7 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
+
 function zle-keymap-select () {
     case $KEYMAP in
         vicmd) echo -ne '\e[1 q';;      # block
@@ -76,7 +79,7 @@ echo -ne '\e[5 q'
 preexec() { echo -ne '\e[5 q';
 }
 
-case "$TERM" in (foot)
+case "$TERM" in (foot|alacritty)
     local term_title () { print -n "\e]0;${(j: :q)@}\a" }
     precmd () {
       local DIR="$(print -P ' [%n@%m %~]%# ')"
@@ -91,12 +94,15 @@ case "$TERM" in (foot)
 esac
 
 function y() {
-    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-    yazi --cwd-file="$tmp" "$@"
-    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-        builtin cd -- "$cwd"
+  tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if [[ -f "$tmp" ]]; then
+    cwd="$(cat "$tmp")"
+    rm -f "$tmp"
+    if [[ -d "$cwd" ]]; then
+      cd "$cwd"
     fi
-    rm -f -- "$tmp"
+  fi
 }
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
