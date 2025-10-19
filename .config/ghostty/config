@@ -1,0 +1,4 @@
+theme = Ayu
+font-size = 12
+copy-on-select = clipboard
+keybind = cmd+shift+v=paste_from_clipboard

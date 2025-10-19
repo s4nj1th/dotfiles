@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ "$TERM" = "foot" ] || [ "$TERM" = "alacritty" ] || [ "$TERM" = "xterm-ghostty" ] || [ "$TERM" = "xterm-kitty" ]; then
+  brr=$(od -An -N2 -i /dev/urandom | tr -d ' ')
+  brr=$((brr % 100))
+
+  if [ $((brr % 3)) -eq 0 ]; then
+    fortune | cowsay
+  else
+    neofetch
+  fi
+  
+  showTodo
+fi
+
