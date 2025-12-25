@@ -31,4 +31,5 @@ alias \
   tmux="tmux -2" \
   df="df -x tmpfs" \
   watch="watch --color" \
-  python="python3"
+  python="python3" \
+  sc="sc-im"
