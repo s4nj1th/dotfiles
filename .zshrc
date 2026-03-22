@@ -18,6 +18,9 @@ git_branch() {
 
 export EDITOR=nvim
 
+export LESS="--RAW-CONTROL-CHARS"
+[[ -f ~/.LESS_TERMCAP ]] && . ~/.LESS_TERMCAP
+
 setopt autocd
 setopt interactive_comments
 
@@ -111,3 +114,19 @@ function y() {
     fi
   fi
 }
+
+export CHROME_EXECUTABLE="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/s4n/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
+# Added by Antigravity
+export PATH="/Users/s4n/.antigravity/antigravity/bin:$PATH"
+export GOPATH=$HOME/.local/share/go
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH
