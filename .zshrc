@@ -1,19 +1,17 @@
 autoload -U colors && colors
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin
 
 setopt PROMPT_SUBST
 
 PROMPT='%B%F{red}[%F{green}%n%F{yellow}@%F{blue}%m %F{magenta}%1~%F{red}]%f%F{yellow}$(git_branch)%f %#%b '
-# PROMPT='%B%F{red}[%F{green}%n%F{yellow}@%F{blue}%m %F{magenta}%1~%F{red}]%f %#%b '
-# PROMPT=' %B%F{blue}%1~%f%F{yellow}$(git_branch)%f %#%b '
 
 git_branch() {
   local branch dirty
   branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || return
   if [[ -n $(git status --porcelain 2>/dev/null) ]]; then
-    dirty="*"
+    dirty="%F{red}*%f"
   fi
-  echo "  $branch$dirty"
+  echo " %F{blue} $branch%f$dirty"
 }
 
 export EDITOR=nvim
@@ -115,7 +113,7 @@ function y() {
   fi
 }
 
-export CHROME_EXECUTABLE="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
+export CHROME_EXECUTABLE="/Applications/Helium.app/Contents/MacOS/Helium"
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/s4n/.docker/completions $fpath)
