@@ -32,4 +32,6 @@ alias \
   watch="watch --color" \
   python="python3" \
   sc="sc-im" \
-  ff="fastfetch"
+  ff="fastfetch" \
+  ncdu="ncdu --color dark"
+
