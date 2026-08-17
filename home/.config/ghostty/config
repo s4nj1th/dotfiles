@@ -4,3 +4,7 @@ copy-on-select = clipboard
 keybind = cmd+shift+v=paste_from_clipboard
 confirm-close-surface = false
 font-family = SF Mono
+keybind = cmd+n=ignore
+keybind = cmd+t=ignore
+keybind = cmd+d=ignore
+keybind = cmd+shift+d=ignore
