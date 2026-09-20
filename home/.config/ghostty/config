@@ -8,3 +8,5 @@ keybind = cmd+n=ignore
 keybind = cmd+t=ignore
 keybind = cmd+d=ignore
 keybind = cmd+shift+d=ignore
+background-opacity = 0.8
+background-blur = macos-glass-clear
