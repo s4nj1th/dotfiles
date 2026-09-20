@@ -45,6 +45,23 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey -v
 export KEYTIMEOUT=1
 
+tmux-auto() {
+    if tmux has-session 2>/dev/null; then
+        tmux attach-session
+    else
+        tmux new-session
+    fi
+}
+
+tmux-widget() {
+    BUFFER=""
+    zle redisplay
+    tmux-auto
+}
+
+zle -N tmux-widget
+bindkey '^T' tmux-widget
+
 autoload -Uz compinit
 zmodload zsh/complist
 compinit
