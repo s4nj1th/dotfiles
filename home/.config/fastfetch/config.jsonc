@@ -14,45 +14,88 @@
   },
 
   "modules": [
-    "title",
+    {
+      "type": "title",
+      "truncate": true
+    },
     "separator",
 
-    "user",
+    {
+      "type": "user",
+      "truncate": true
+    },
     {
       "type": "users",
-      "key": "Users"
+      "key": "Users",
+      "truncate": true
     },
-    "datetime",
-    "host",
-    "machine",
-    "os",
+    {
+      "type": "datetime",
+      "truncate": true
+    },
+    {
+      "type": "host",
+      "truncate": true
+    },
+    {
+      "type": "machine",
+      "truncate": true
+    },
+    {
+      "type": "os",
+      "truncate": true
+    },
     {
       "type": "kernel",
-      "format": "{release}"
+      "format": "{release}",
+      "truncate": true
     },
-    "uptime",
-    "cpu",
+    {
+      "type": "uptime",
+      "truncate": true
+    },
+    {
+      "type": "cpu",
+      "truncate": true
+    },
     {
       "type": "gpu",
       "key": "GPU",
-      "format": "{name}"
+      "format": "{name}",
+      "truncate": true
     },
     {
       "type": "memory",
-      "format": "{used} / {total}"
+      "format": "{used} / {total}",
+      "truncate": true
     },
-    "disk",
-    "poweradapter",
-    "terminal",
-    "shell",
+    {
+      "type": "disk",
+      "truncate": true
+    },
+    {
+      "type": "poweradapter",
+      "truncate": true
+    },
+    {
+      "type": "terminal",
+      "truncate": true
+    },
+    {
+      "type": "shell",
+      "truncate": true
+    },
 
     "break",
+
     {
       "type": "colors",
       "symbol": "block",
       "block": {
         "range": [0, 7]
       }
-    }
+    },
+
+    "break"
   ]
 }
