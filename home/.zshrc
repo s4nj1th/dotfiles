@@ -1,39 +1,44 @@
 autoload -U colors && colors
-export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin
+autoload -Uz compinit
+autoload -Uz add-zsh-hook
+zmodload zsh/complist
+
+export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin"
+export EDITOR=nvim
+export LESS="--RAW-CONTROL-CHARS"
+
+export GOPATH="$HOME/.local/share/go"
+
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
+export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
+export PATH="/Users/s4n/.antigravity/antigravity/bin:$PATH"
+
+export CHROME_EXECUTABLE="/Applications/Helium.app/Contents/MacOS/Helium"
+
+[[ -f ~/.LESS_TERMCAP ]] && . ~/.LESS_TERMCAP
 
 setopt PROMPT_SUBST
+setopt autocd
+setopt interactive_comments
 
 PROMPT='%B%F{red}[%F{green}%n%F{yellow}@%F{blue}%m %F{magenta}%1~%F{red}]%f%F{yellow}$(git_branch)%f %#%b '
 
 git_branch() {
-  local branch dirty
-  branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || return
-  if [[ -n $(git status --porcelain 2>/dev/null) ]]; then
-    dirty="%F{red}*%f"
-  fi
-  echo " %F{blue} $branch%f$dirty"
+    local branch dirty
+    branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || return
+    if [[ -n $(git status --porcelain 2>/dev/null) ]]; then
+        dirty="%F{red}*%f"
+    fi
+    echo " %F{blue} $branch%f$dirty"
 }
-
-export EDITOR=nvim
-
-export LESS="--RAW-CONTROL-CHARS"
-[[ -f ~/.LESS_TERMCAP ]] && . ~/.LESS_TERMCAP
-
-setopt autocd
-setopt interactive_comments
 
 HISTSIZE=100000
 SAVEHIST=100000
-HISTFILE=$HOME/.zsh_history
-
-function clear-screen-and-scrollback() {
-  builtin echoti civis >"$TTY"
-  builtin print -rn -- $'\e[H\e[2J' >"$TTY"
-  builtin zle .reset-prompt
-  builtin zle -R
-  builtin print -rn -- $'\e[3J' >"$TTY"
-  builtin echoti cnorm >"$TTY"
-}
+HISTFILE="$HOME/.zsh_history"
 
 source ~/.config/zsh/aliases
 source ~/.config/zsh/startup
@@ -42,29 +47,10 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-bindkey -v
-export KEYTIMEOUT=1
+fpath=(/Users/s4n/.docker/completions $fpath)
 
-tmux-auto() {
-    if tmux has-session 2>/dev/null; then
-        tmux attach-session
-    else
-        tmux new-session
-    fi
-}
-
-tmux-widget() {
-    BUFFER=""
-    zle redisplay
-    tmux-auto
-}
-
-zle -N tmux-widget
-bindkey '^T' tmux-widget
-
-autoload -Uz compinit
-zmodload zsh/complist
 compinit
+
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' menu select=2
@@ -72,18 +58,30 @@ zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion:*:descriptions' format '%U%F{cyan}%d%f%u'
 
+bindkey -v
+export KEYTIMEOUT=1
+
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-function zle-keymap-select () {
+tmux-widget() {
+    BUFFER="tmux new-session -A -s main"
+    zle accept-line
+}
+
+zle -N tmux-widget
+bindkey -M viins '^T' tmux-widget
+
+zle-keymap-select() {
     case $KEYMAP in
-        vicmd) echo -ne '\e[1 q';;      # block
-        viins|main) echo -ne '\e[5 q';; # bar
+        vicmd) echo -ne '\e[1 q' ;;
+        viins|main) echo -ne '\e[5 q' ;;
     esac
 }
+
 zle -N zle-keymap-select
 
 zle-line-init() {
@@ -102,52 +100,44 @@ zle-line-init() {
     bindkey '^[^?' backward-delete-word
     bindkey '^[[3;2~' forward-delete-word
 }
+
 zle -N zle-line-init
 
-preexec() { echo -ne '\e[5 q'; }
-
-case "$TERM" in (foot|alacritty)
-    local term_title () { print -n "\e]0;${(j: :q)@}\a" }
-    precmd () {
-      local DIR="$(print -P ' [%n@%m %~]%# ')"
-      term_title "$DIR"
-    }
-    preexec () {
-      local CMD="${(j:\n:)${(f)1}}"
-      term_title "$CMD"
-    }
-esac
-
-function y() {
-  tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-  yazi "$@" --cwd-file="$tmp"
-  if [[ -f "$tmp" ]]; then
-    cwd="$(cat "$tmp")"
-    rm "$tmp"
-    if [[ -d "$cwd" ]]; then
-      cd "$cwd"
-    fi
-  fi
+preexec() {
+    echo -ne '\e[5 q'
 }
 
-export CHROME_EXECUTABLE="/Applications/Helium.app/Contents/MacOS/Helium"
+title-precmd() {
+    print -Pn "\e]2;%~\a"
+}
 
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/s4n/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
+title-preexec() {
+    print -Pn "\e]2;${(q-)1}\a"
+}
 
-# Added by Antigravity
-export PATH="/Users/s4n/.antigravity/antigravity/bin:$PATH"
-export GOPATH=$HOME/.local/share/go
+add-zsh-hook precmd title-precmd
+add-zsh-hook preexec title-preexec
 
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
-export PATH=$ANDROID_HOME/platform-tools:$PATH
-export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
+function clear-screen-and-scrollback() {
+    builtin echoti civis >"$TTY"
+    builtin print -rn -- $'\e[H\e[2J' >"$TTY"
+    builtin zle .reset-prompt
+    builtin zle -R
+    builtin print -rn -- $'\e[3J' >"$TTY"
+    builtin echoti cnorm >"$TTY"
+}
 
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-export ANDROID_SDK_ROOT="$ANDROID_HOME"
-export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
-export PATH="$PATH:$ANDROID_HOME/platform-tools"
+function y() {
+    local tmp cwd
+    tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    yazi "$@" --cwd-file="$tmp"
+
+    if [[ -f "$tmp" ]]; then
+        cwd="$(cat "$tmp")"
+        rm "$tmp"
+
+        if [[ -d "$cwd" ]]; then
+            cd "$cwd"
+        fi
+    fi
+}
