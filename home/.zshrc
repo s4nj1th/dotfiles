@@ -73,7 +73,7 @@ tmux-widget() {
 }
 
 zle -N tmux-widget
-bindkey -M viins '^T' tmux-widget
+bindkey -M viins '^ ' tmux-widget
 
 zle-keymap-select() {
     case $KEYMAP in
