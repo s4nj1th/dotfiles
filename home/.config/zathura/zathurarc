@@ -1,4 +1,4 @@
-set font "SF Mono 8"
+set font "SF Mono 10"
 
 set statusbar-fg "#C0C0C0"
 set statusbar-bg "#000000"
@@ -8,3 +8,5 @@ set recolor-lightcolor "#000000"
 set recolor-darkcolor "#E0E0E0"
 set recolor-reverse-video "true"
 set recolor-keephue "true"
+
+set selection-clipboard clipboard
