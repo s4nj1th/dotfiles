@@ -18,6 +18,7 @@ path=(
     "$ANDROID_HOME/cmdline-tools/latest/bin"
     "$ANDROID_HOME/platform-tools"
     "/opt/homebrew/opt/openjdk@21/bin"
+    "/Library/TeX/texbin"
     $path
 )
 

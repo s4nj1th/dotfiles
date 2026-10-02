@@ -1,0 +1,4 @@
+[[flavor.deps]]
+use = "mingo99/tokyonight"
+rev = "c0e07b7"
+hash = "be42a8e4f52bc7e7d6d12737e2e4449e"
