@@ -10,3 +10,4 @@ keybind = cmd+d=ignore
 keybind = cmd+shift+d=ignore
 background-opacity = 0.8
 background-blur = macos-glass-regular
+window-padding-balance = true
