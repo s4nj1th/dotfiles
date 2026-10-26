@@ -18,3 +18,8 @@ on   = [ "g", "p" ]
 run  = "cd ~/Pictures"
 desc = "Cd to ~/Pictures"
 
+[[mgr.prepend_keymap]]
+on   = [ "g", "l" ]
+run  = "cd ~/.local"
+desc = "Cd to ~/.local"
+

@@ -1,0 +1,16 @@
+# Reader
+READER="linkzathura"
+READER_ARG=""
+
+# Converters
+OFFICE_CMD="soffice"       # LibreOffice
+OFFICE_ARG=""
+MOBI_CMD="ebook-convert"   # calibre
+MOBI_ARG=""
+MD_CMD="md2pdf"
+MD_ARG=""
+TYPST_CMD="typst"
+TYPST_ARG="compile"
+
+# Behavior
+VERBOSE=0

@@ -10,6 +10,8 @@ export GOPATH="$HOME/.local/share/go"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export ANDROID_SDK_ROOT="$ANDROID_HOME"
 export CHROME_EXECUTABLE="/Applications/Helium.app/Contents/MacOS/Helium"
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+
 
 path=(
     "$HOME/.local/bin"
@@ -17,7 +19,7 @@ path=(
     "$HOME/.antigravity/antigravity/bin"
     "$ANDROID_HOME/cmdline-tools/latest/bin"
     "$ANDROID_HOME/platform-tools"
-    "/opt/homebrew/opt/openjdk@21/bin"
+    "$JAVA_HOME/bin"
     "/Library/TeX/texbin"
     $path
 )
